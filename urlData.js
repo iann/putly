@@ -18,9 +18,13 @@ function addUrl(shortName , url){
 	
 } 
 
+function getAll(){
+	return urlMap;
+}
 /////////////// EXPORTS ///////////////////////
 //THESE NEED TO MAP TO EXACTLY TO A REQUEST/POST HANDLER ABOVE
 //just export each function that we want to call
 exports.getUrl = getUrl;
 exports.addUrl = addUrl;
+exports.getAll = getAll;
 /////////////// EXPORTS ///////////////////////
