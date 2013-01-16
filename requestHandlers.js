@@ -29,10 +29,11 @@ function sendredirect(request, response){
 	
 	//farm the params
 	var shortname = request.params.shortname;
-	var redirectUrl = data.getUrl(shortname);
-	
+	var urlData = data.getUrl(shortname);
+	console.log(urlData.url);
+	response.redirect(urlData.url);
 	//TODO: do something useful
-	response.end("consider yourself redirected to " + redirectUrl + "...");
+	//response.end("consider yourself redirected to " + redirectUrl + "...");
 	return;
 }
 
