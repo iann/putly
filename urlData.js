@@ -1,6 +1,5 @@
 //data structure to hold url
 var urlMap = {};
-urlMap['test'] = {shortName:'test' , url:'http://www.google.com', hits: 1, creationTime:Date.now(), lastHitTime:Date.now()};
 
 function getUrl(shortName){
 	console.log("Fetching url for " + shortName);
