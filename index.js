@@ -35,7 +35,7 @@ app.get('/go/:shortname', function(req, res){
 
 
 //start er up
-app.listen(28943);
+app.listen(process.env.PORT);
 
 
 //fall through for all errors, just put them to stdout
