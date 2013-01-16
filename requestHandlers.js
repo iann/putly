@@ -18,9 +18,9 @@ function setlink(request, response){
 function getlinks(request, response){
 	console.log("Request handler ’GETLINKS’ was called.");
 	
-	//TODO: do something useful
-    response.end("links returned.");
-	return;
+	
+    response.json(data.getAll());
+	
 }
 
 

@@ -4,6 +4,7 @@ urlMap['test'] = {shortName:'test' , url:'http://www.google.com', hits: 1, creat
 
 function getUrl(shortName){
 	console.log("Fetching url for " + shortName);
+	//TODO: update lastHitTime and hits 
     return urlMap[shortName];
 }
 
