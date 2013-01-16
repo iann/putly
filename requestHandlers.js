@@ -1,3 +1,5 @@
+var data = require('./urlData');
+
 /////////////// REQUEST HANDLERS ///////////////////////
 function setlink(request, response){
 	console.log("Request handler ’SETLINK’ was called.");
@@ -5,8 +7,8 @@ function setlink(request, response){
 	//farm the params
 	var shortname = request.params.shortname;
 	var completeURL = request.params.completeurl;
-	
-	console.log("INPUT: " + shortname + " : " + completeURL);
+	var added = data.addUrl(shortname,completeURL);
+	console.log("INPUT: " + shortname + " : " + completeURL+" was added " + added);
 	
 	//TODO: do something useful
     response.end("link set to " + completeURL);
@@ -27,9 +29,10 @@ function sendredirect(request, response){
 	
 	//farm the params
 	var shortname = request.params.shortname;
+	var redirectUrl = data.getUrl(shortname);
 	
 	//TODO: do something useful
-    response.end("consider yourself redirected...");
+	response.end("consider yourself redirected to " + redirectUrl + "...");
 	return;
 }
 
