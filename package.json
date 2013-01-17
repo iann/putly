@@ -8,5 +8,8 @@
     "express": "3.0.0beta4",
     "gzippo": ">=0.1.7"
   },
-  "private": true
+  "private": true,
+  "scripts": { 
+    "start": "node index.js" 
+  }
 }
