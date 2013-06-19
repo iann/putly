@@ -21,14 +21,16 @@ app.get('/setlink/:shortname/:completeurl', function(req, res){
 
 
 //ask for a new link to be created, should return the link you asked for and the link you got
-app.get('/set/:completeurl', function(req, res){
-    handle.set(req, res);
+app.get('/s/:completeurl', function(req, res){
+	console.log(req);
+    handle.setlink(req, res);
 });
 
 //ask for a new link to be created, should return the link you asked for and the link you got
-app.post('/set/:completeurl', function(req, res){
-    handle.setlink(req, res);
-});
+//when you hit this with a post, it should expect a JSON object as input
+//app.post('/set/', function(req, res){
+//    handle.set(req, res);
+//});
 
 
 

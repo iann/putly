@@ -1,43 +1,52 @@
 var data = require('./urlData');
+var urlGenerator = require('./urlGenerate');
 
 /////////////// REQUEST HANDLERS ///////////////////////
 function setlink(request, response){
     console.log("Request handler ’SETLINK’ was called.");
     
-    //farm the params
-    var shortname = request.params.shortname;
-    var completeURL = request.params.completeurl;
-    var added = data.addUrl(shortname,completeURL);
-    console.log("INPUT: " + shortname + " : " + completeURL+" was added " + added);
-    
-    //TODO: do something useful
-    response.end("link set to " + completeURL);
-    return;
-}
-
-
-function set(request, response){
-    console.log("Request handler ’SET’ was called.");
-    
+	//we want to return a JSON string
+	var rObj = {};
+	
     //farm the params
 	//see if we are posted first
-	if(req.body){
+	if(request.body.input){
 		//its a post jim!
 		console.log("SET with POST method.");
+		console.log(request.body.input);
+		
+		var urlList = request.body.input;
+		
+		//TODO:
+		//loop through the input field (JSON list of URLs)
+		//    {input:["url", "url", "url"]}
+		//decode them
+		//shorten each one
+		//add it to the dB
+		//add it to the return object
+		
+		
+		//respond with a JSON block
+		//TODO: write in the post handler code to deal with responses
+		rObj = {info:"this is the POST, write better code here"};
 	} else {
-		var completeURL = request.params.completeurl;		
-		//generate the shortURL
+		var completeURL = request.params.completeurl;
+		
 		//TODO: add in the generate tools
-		var shortURL = generateURL(completeURL);
+		var shortURL = urlGenerator.generateUrl(completeURL);
+		
 		var added = data.addUrl(shortURL,completeURL);
 		console.log(completeURL+" was added " + added);
-    }
 		
-    //TODO: return JSON for requested URL and shortened URL
-	var rObj = {input:completeURL, output:shortURL};
+		//respond with a JSON block
+		rObj = {input:completeURL, output:shortURL};
+	}
+	
     response.json(rObj);
     return;
 }
+
+
 
 function getlinks(request, response){
     console.log("Request handler ’GETLINKS’ was called.");

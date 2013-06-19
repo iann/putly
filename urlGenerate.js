@@ -15,5 +15,5 @@ function generateUrl(completeURL){
 
 /////////////// EXPORTS ///////////////////////
 //just export each function that we want to call
-exports.generateUrl = generateURL;
+exports.generateUrl = generateUrl;
 /////////////// EXPORTS ///////////////////////
