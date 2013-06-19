@@ -20,6 +20,22 @@ app.get('/setlink/:shortname/:completeurl', function(req, res){
 });
 
 
+//ask for a new link to be created, should return the link you asked for and the link you got
+app.get('/set/:completeurl', function(req, res){
+    handle.set(req, res);
+});
+
+//ask for a new link to be created, should return the link you asked for and the link you got
+app.post('/set/:completeurl', function(req, res){
+    handle.setlink(req, res);
+});
+
+
+
+
+
+
+
 //TODO: add optional parameter for searching for a short link
 app.get('/getlinks', function(req, res){
     handle.getlinks(req, res);

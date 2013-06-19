@@ -1,14 +1,29 @@
 var myApp = angular.module('myApp', []);
 
-function Putly($scope, $location) {
+function Putly($scope, $location, $http) {
   $scope.location = $location;
 
-  $scope.list = [];
+  $scope.longURLs = [""];
+  $scope.shortURL = "";
   $scope.text = 'hello';
   $scope.submit = function() {
-    if (this.text) {
-      this.list.push(this.text);
-      this.text = '';
-    }
+  	var urls = [];
+    $('.long-url').each(function () {
+    	urls.push(encodeURIComponent($(this).text()));
+    });
+    var shortURL = Math.round(Math.random()*1000);
+    $http.get('/setlink/'+shortURL+'/'+urls[0]).success(function(data){
+    	$scope.shortURL = shortURL;
+    })
   };
+}
+
+var URL = function () {
+	return {
+		shortName: "",
+		url: "",
+		hits: 0,
+		creationTime: "",
+		lastHitTime: ""
+	}
 }

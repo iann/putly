@@ -15,6 +15,30 @@ function setlink(request, response){
     return;
 }
 
+
+function set(request, response){
+    console.log("Request handler ’SET’ was called.");
+    
+    //farm the params
+	//see if we are posted first
+	if(req.body){
+		//its a post jim!
+		console.log("SET with POST method.");
+	} else {
+		var completeURL = request.params.completeurl;		
+		//generate the shortURL
+		//TODO: add in the generate tools
+		var shortURL = generateURL(completeURL);
+		var added = data.addUrl(shortURL,completeURL);
+		console.log(completeURL+" was added " + added);
+    }
+		
+    //TODO: return JSON for requested URL and shortened URL
+	var rObj = {input:completeURL, output:shortURL};
+    response.json(rObj);
+    return;
+}
+
 function getlinks(request, response){
     console.log("Request handler ’GETLINKS’ was called.");
     
