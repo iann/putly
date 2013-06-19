@@ -20,17 +20,22 @@ db.open(function (err, db) {
 function getUrl(shortName){
     console.log("Fetching url for " + shortName);
     //TODO: update lastHitTime and hits 
-    return urlMap[shortName];
+	var url;
+	db.collection('urls', function (err, collection) {
+		collection.findOne({'shortName':shortName},function(err,doc){
+				console.log(doc);
+		});
+
+		});
 }
 
 function addUrl(shortName , url){
     console.log("Attempting to add url for " + shortName + " : "+url);
-    if(urlMap[shortName]===undefined){
-        urlMap[shortName] = {shortName:shortName , url:url , hits: 1, creationTime:Date.now(), lastHitTime:Date.now()};
-        return true;
-    }else{
-        return false;
-    }
+	db.collection('urls', function (err, collection) {
+		collection.insert(
+			{shortName:shortName , url:url , hits: 1, creationTime:Date.now(), lastHitTime:Date.now()}
+			);
+		});
     
 } 
 

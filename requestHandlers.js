@@ -30,7 +30,7 @@ function sendredirect(request, response){
     //farm the params
     var shortname = request.params.shortname;
     var urlData = data.getUrl(shortname);
-    console.log(urlData.url);
+    console.log(urlData);
     response.redirect(urlData.url);
     //TODO: do something useful
     //response.end("consider yourself redirected to " + redirectUrl + "...");
