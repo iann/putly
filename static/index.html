@@ -2,32 +2,22 @@
 <html ng-app>
   <head>
     <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/jquery-1.7.2.min.js"></script>
     <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+    <title>Putly</title>
   </head>
   <body>
-    <div ng-controller="Putly">
-      <form ng-submit="submit()" ng-controller="Ctrl">
-        <label>Full URL:</label>
-        <input type="text" ng-model="longURL" placeholder="Enter the full URL to redirect to">
-        <label>Short Name:</label>
-        <input type="text" ng-model="shortName" placeholder="Enter a short name here">
-        <input type="submit" id="submit" value="Submit" />
-      </form>
-      <hr>
-      <h1>Going from {{location.absUrl().substring(0,(location.absUrl().lastIndexOf('/')+1))}}{{shortName}} to {{longURL}}!</h1>
-
-
-    <form name="myForm" ng-controller="PutlySubmit">
-      userType: <input name="input" ng-model="userType" required>
-      <span class="error" ng-show="myForm.input.$error.required">Required!</span><br>
-      <tt>userType = {{userType}}</tt><br>
-      <tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br>
-      <tt>myForm.input.$error = {{myForm.input.$error}}</tt><br>
-      <tt>myForm.$valid = {{myForm.$valid}}</tt><br>
-      <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br>
-     </form>
-
-
+    <div id="main-container" ng-controller="Putly">
+      <button ng-click="submit()">Shorten</button>
+      <div id="url-container">
+      	<button>Add URL</button>
+      	<div class="url-row clear-floats">
+      		<div class="field long-url" contenteditable="true">Enter a URL</div>
+      		<div class="field short-url">{{shortURL}}</div>
+      	</div>
+      </div>
     </div>
   </body>
 </html>
