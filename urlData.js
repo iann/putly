@@ -8,6 +8,7 @@ var Server = mongo.Server,
     BSON = mongo.BSONPure;
 
 var server = new Server('localhost', 27017, {auto_reconnect: true});
+
 db = new Db('putly', server);
 
 db.open(function (err, db) {
@@ -17,16 +18,21 @@ db.open(function (err, db) {
     }
 });
 
-function getUrl(shortName){
-    console.log("Fetching url for " + shortName);
+function getUrl(response, target){
+    console.log("Fetching url for " + target);
     //TODO: update lastHitTime and hits 
-	var url;
+	var longUrl;
 	db.collection('urls', function (err, collection) {
-		collection.findOne({'shortName':shortName},function(err,doc){
-				console.log(doc);
+		collection.findOne({}, {fields:{shortName:target}},function(err,doc){	
+			console.log(err);
+			
+			longUrl = doc.url;
+			console.log(doc);
+			//console.log(response);
+			response.redirect(longUrl);
+			return doc;
 		});
-
-		});
+	});
 }
 
 function addUrl(shortName , url){
@@ -34,14 +40,15 @@ function addUrl(shortName , url){
 	db.collection('urls', function (err, collection) {
 		collection.insert(
 			{shortName:shortName , url:url , hits: 1, creationTime:Date.now(), lastHitTime:Date.now()}
-			);
-		});
-    
+		);
+	}); 
 } 
 
 function getAll(){
     return urlMap;
 }
+
+
 /////////////// EXPORTS ///////////////////////
 //THESE NEED TO MAP TO EXACTLY TO A REQUEST/POST HANDLER ABOVE
 //just export each function that we want to call

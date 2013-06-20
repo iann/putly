@@ -61,10 +61,15 @@ function sendredirect(request, response){
     console.log("Request handler ’SENDREDIRECT’ was called.");
     
     //farm the params
-    var shortname = request.params.shortname;
-    var urlData = data.getUrl(shortname);
-    console.log(urlData);
-    response.redirect(urlData.url);
+    var target = request.params.shortname;
+    
+	var urlData = data.getUrl(response, target);
+    
+	//console.log("CHECK ME: " +urlData);
+	
+	
+    //response.redirect(urlData.url);
+	
     //TODO: do something useful
     //response.end("consider yourself redirected to " + redirectUrl + "...");
     return;
